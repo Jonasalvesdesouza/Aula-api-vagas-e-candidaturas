@@ -1,0 +1,42 @@
+Passos:
+    1 - npm init -y (Vai gerar o arquivo package.json)
+    2 - npm install express
+    3 - npm isntall -D @types/express typescript ts-node-dev prisma
+    4 - criar pasta src inserir nela os arquivos app.ts e server.ts
+    5 - ir na pasta package.json e inserir no script o comando ( "dev": "tsnd --respawn src/server.ts" ) 
+    6 - npx tsc --init
+    7 - no arquivo tsconfig.json inserir apos o "compilerOptions" os seguintes comandos: 
+    
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+
+    8 - configurar o prisma rode o comando npx prisma init
+    9 - precisaremos criar um bando de dados usando o PostqresSQL para isso vamos logar usando o comando: 
+    
+    psql -U postgres
+
+    10 - Crie o banco de dados usando oseguinte comando em SQL. ( CREATE DATABASE prisma_express_db; ) 
+    11 - Agora no arquivo .env configure a URL
+    12 - apos configurar o aqruivo schema.prisma com as tabelas vamos migrar usando oseguinte comando:
+
+    npx prisma migrate dev --name init (renomeamos com init por ser a primeira migracao)
+
+    13 - para visualizar o banco de dados rode o seguinte comando:
+
+    npx prisma studio
+
+    14 - Vamos instalar uma dependencia de seguranca vamos utiliar o helmet, para instalar o mesmo vamo usar o seguinte comando:
+
+    npm install helmet
+
+    15 Apos a instalacao do helmet vamos no arquivo app instaciamos o mesmo.
+
+    16 - "OBS: por rodar o comando npx prisma migrate dev nao precisamos instalar o prisma client"
+
+    17 - Apos instaciar o prisma e criar arquitetura de services de controllers e routes criaremos as interfaces e posteiormente para validacao de rotas vamos instalar o zod, rode o seguinte comando:
+
+    npm install zod
+
+    18 - Apos realizar as regras de negocio no arquivo services e instanciar os controllers precisamos instanciar os errors para o express reconhecer rode o seguinte comando no terminal:
+
+    npm install express-async-errors
